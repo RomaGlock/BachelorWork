@@ -1,0 +1,3 @@
+echo "mkdir -p constant/polyMesh"
+echo "mkdir -p meshGen"
+echo "cp $(pwd)/settings ./settings_defaults"

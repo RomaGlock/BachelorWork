@@ -1,0 +1,185 @@
+# makefile for NS CUDA
+SHELL = /bin/bash
+
+# if MPI is not supported USEMPI= NO
+USEMPI= NO
+
+# Location of the CUDA Toolkit binaries and libraries
+#CUDA_PATH       ?= /usr/local/cuda-5.0
+CUDA_PATH       ?= /usr/local/cuda
+CUDA_INC_PATH   ?= $(CUDA_PATH)/include
+CUDA_LIB_PATH   ?= $(CUDA_PATH)/lib
+CUDA_BIN_PATH   ?= $(CUDA_PATH)/bin
+
+# Common binaries
+NVCC            ?= $(CUDA_BIN_PATH)/nvcc
+GCC             ?= g++
+GCC2 = gcc -shared -fPIC -o $@
+
+# OS-specific build flags
+ifneq ($(DARWIN),) 
+      LDFLAGS   := -Xlinker -rpath $(CUDA_LIB_PATH) -L$(CUDA_LIB_PATH) -framework CUDA -lcudart
+      CCFLAGS   := -arch $(OS_ARCH) 
+else
+  ifeq ($(OS_SIZE),32)
+      LDFLAGS   := -L$(CUDA_LIB_PATH) -lcuda -lcudart -lcublas
+      CCFLAGS   := -m32 
+  else
+      LDFLAGS   := -L$(CUDA_LIB_PATH)64 -lcuda -lcudart -lcublas
+      CCFLAGS   := -m64
+  endif
+endif
+
+# OS-architecture specific flags
+ifeq ($(OS_SIZE),32)
+      NVCCFLAGS := -m32
+else
+      NVCCFLAGS := -m64
+endif
+
+#last code
+CXX = g++ -g -O2
+CC = gcc -g -O2
+
+#MPICC=-L/usr/local/openmpi/lib -lmpi
+LINK   = -lm
+LINKCU = $(MPICC) $(LDFLAGS) #-lz
+#20 30 35 37 50 52
+SMS ?= 30
+# Generate SASS code for each SM architecture listed in $(SMS)
+$(foreach sm,$(SMS),$(eval GENCODE_FLAGS += -gencode arch=compute_$(sm),code=sm_$(sm)))
+
+CPPFLAGS = -Wall -DOMP_ON
+NVFLAGS = $(GENCODE_FLAGS) -Xcompiler "--openmp" -DOMP_ON -DMPI_ON # -lineinfo
+
+WARNING_FILTER=2> err.out
+
+BIN = ../build
+
+# extension of C++ source file (.cc, .cpp or ....)
+SUFF = cpp
+
+.SUFFIXES:
+.SUFFIXES: .o .$(SUFF) .cu .c
+
+.$(SUFF).o:
+	$(CXX) -c $(CPPFLAGS) $*.$(SUFF) -o $*.o
+
+.c.o:
+	$(CC) -c $(CPPFLAGS) $*.c -o $*.o
+
+.cu.o:
+	@echo "$(NVCC) -c $(NVFLAGS) $< -o $@"
+	@$(NVCC) -c $(NVFLAGS) $< -o $@
+
+
+ALLSRC =
+
+SRC   = changeProfile.cpp \
+	findWave.cpp \
+	math_our.cpp \
+	stl_io.cpp \
+	cut_stl.cpp \
+	error.cpp \
+	group.cpp \
+	makeOFMesh.cpp \
+	triangle.cpp \
+	absurface.cpp \
+	private_utils.cpp \
+	args.cpp \
+	merge_out_in.cpp
+SRCCU = MMPE.cu \
+	abmesh.cpp \
+	llrelax.cu \
+        normalmesh.cpp
+OBJ   = $(addsuffix .o, $(basename $(SRC)))
+OBJCU = $(addsuffix .o, $(basename $(SRCCU)))
+ALLSRC += $(SRC)
+
+
+all: 	makedir \
+	Stl_Lib_cuda \
+	meshGenStl2Bin \
+	meshGenAdapt \
+	meshGenChangeProfile \
+	meshGenCreateCase \
+	meshGenStl2Off \
+	meshGenOff2Stl \
+	meshGenOff2Geo \
+	meshGenOff2LiLu \
+	meshGenCreateLengths \
+	meshGenStl2OffAsIs \
+	meshGenAbSurface \
+	meshGenConvert \
+	meshGenMergeOutIn \
+	meshGenNMesh \
+	meshGenBinTo3d \
+	meshGenAbMesh \
+	meshGenRotateMesh
+
+makedir:
+	mkdir -p $(BIN)
+module:
+	@which nvcc > /dev/null 2> /dev/null; rc=$$?;\
+        if [ "$$rc" -eq 1 ]; then echo module load nvidia/cuda-toolkit; exit 1; fi;
+
+yams.so : ./yams/sources/*.c ./yams/sources/*.h
+	$(GCC2) ./yams/sources/*.c
+
+meshGenAdapt: $(OBJ) meshGenAdapt.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+	
+meshGenBinTo3d: $(OBJ) $(OBJCU) meshGenBinTo3d.o	
+	$(NVCC) $(LINKCU) $^  -o $(BIN)/$@
+	
+meshGenStl2Bin: $(OBJ) meshGenStl2Bin.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+
+Stl_Lib_cuda: $(OBJ) exe.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+meshGenChangeProfile: $(OBJ) meshGenChangeProfile.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+meshGenStl2Off:	$(OBJ) meshGenStl2Off.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+meshGenStl2OffAsIs:	$(OBJ) meshGenStl2OffAsIs.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+meshGenOff2Stl:	$(OBJ) meshGenOff2Stl.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+meshGenOff2Geo:	$(OBJ) meshGenOff2Geo.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+meshGenOff2LiLu: $(OBJ) meshGenOff2LiLu.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+meshGenConvert: $(OBJ) meshGenConvert.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+meshGenMergeOutIn: $(OBJ) meshGenMergeOutIn.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+meshGenAbMesh: $(OBJ) $(OBJCU) meshGenAbMesh.o	
+	$(NVCC) $(LINKCU) $^  -o $(BIN)/$@
+meshGenAbSurface: $(OBJ) meshGenAbSurface.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+meshGenCreateLengths: $(OBJ) meshGenCreateLengths.o
+	$(GCC) $(LINK) $^  -o $(BIN)/$@
+meshGenNMesh: $(OBJ) $(OBJCU) meshGenNMesh.o
+	$(NVCC) $(LINKCU) $^  -o $(BIN)/$@
+meshGenRotateMesh: $(OBJ) $(OBJCU) rotateMesh.o
+	$(NVCC) $(LINKCU) $^  -o $(BIN)/$@
+meshGenCreateCase:
+	./makeCreateCaseScript >  $(BIN)/$@
+
+
+clean:
+	rm -f *.o *.so
+
+cleanall:
+	rm -rf *.o *.so $(BIN)
+
+
+#DEPEND = depend.inc
+#$(DEPEND) depend::
+#	@ if test -f $(DEPEND) ; then mv $(DEPEND) $(DEPEND).bak; fi;
+#	@echo "Make dependence"
+#	@$(CXX) $(CPPFLAGS) -MM -x c++ $(ALLSRC) > $(DEPEND)
+
+#include $(DEPEND)
+# DO NOT DELETE
+
