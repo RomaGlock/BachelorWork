@@ -1,0 +1,56 @@
+//
+changeProfile_options
+lengthFile	meshGen/length
+nLengthRel	0
+profileFile	meshGen/profile
+createProfile?	0
+
+MMPE_options
+approxLength 	8 1 2.4 1
+lBL 		0.1
+nBL		0
+mBL		1.2
+lSW 		0.1
+nSW		0
+mSW		1.2
+q=s^a,a= 	1
+E=q/(r^b),b= 	1.3 
+nLengthRel 	100 0.1 0.1 
+nLayers 	20
+lengthFile	meshGen/length
+profileFile	meshGen/profile
+createProfile?	0
+firstLayer	1	// 0 = delete FL, 1 leave FL
+
+
+
+cut_options
+normal -1 0 0
+point_on_plane -25 0 0
+cs 0.001
+
+
+findWave_options
+extraCellsMul	2.4
+fieldFileName	p_nodal
+outputFileName	meshGen/length
+eps_field/inlet	0.25
+made 		1 //0 - OF, 1 - OF renumbered, 2 - Slava txt, 3 - Slava bin
+TOL		1e-6
+nRel		100
+elas		1.0
+maxLength	10 //extraCell limiter [shock layer length]
+iterLimit	1
+
+OFMesh_options
+default 0
+wall Wall
+inlet Inflow
+outlet Outflow
+
+abmesh_options
+l_u    4
+l_d    4
+n_u    5
+n_d    10
+file     heat_data.txt
