@@ -2,9 +2,8 @@ clear all;
 
 fileName = 'mesh.config';
 mode = 'r';
-formatSpec = ' ';
 file = fopen(fileName, mode);
-h = fscanf(file, "Hx = %f N = %f\nHy = %f M = %f");
+h = fscanf(file, 'Hx = %f N = %f\nHy = %f M = %f');
 fclose(file);
 
 hx = h(1); Nx = h(2);
