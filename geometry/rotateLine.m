@@ -1,4 +1,4 @@
-function line = burn_surf(data1, data2, angle)
+function line = rotateLine(data1, data2, angle)
 
     x = vertcat(0, data1, 80);
     y = zeros(81,1);
