@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GetDataWorkspace>
+  <version>2.26.0.20</version>
+  <WSversion>10</WSversion>
+  <File>
+    <Name>Z:\Study\МСС\ЦНИИМАШ\Сканы эксперимента\frame4.jpg</Name>
+    <Width>2544</Width>
+    <Height>3228</Height>
+  </File>
+  <Line>
+    <Caption>Линия #1</Caption>
+    <LineColor>87,87,87</LineColor>
+    <BkColor>254,254,254</BkColor>
+    <PtColor>220,70,220</PtColor>
+    <LineType>0</LineType>
+    <Points MF="9">76,18256,463,18643,1453,19273,2479,19309,3523,19669,4576,20173,5593,20866,6763,20839,7753,21019,8806,21703</Points>
+    <Points MF="9">9769,21883,11029,22333,11983,22603,13063,22819,14179,22873,15133,23206,16123,23836,17239,24169,18346,25339</Points>
+  </Line>
+  <Line>
+    <Caption>Линия #2</Caption>
+    <LineColor>87,87,87</LineColor>
+    <BkColor>254,254,254</BkColor>
+    <PtColor>230,220,20</PtColor>
+    <LineType>0</LineType>
+    <Points MF="9">139,17023,499,17176,1453,17536,2533,17653,3613,17743,4513,18193,5656,18526,6763,18796,7789,19219,8806,19156</Points>
+    <Points MF="9">9823,19696,11029,20236,12046,20533,13036,20866,14089,21523,15223,21739,16186,22459,17266,22873,18346,23233</Points>
+  </Line>
+  <Line>
+    <Caption>Линия #3</Caption>
+    <LineColor>87,87,87</LineColor>
+    <BkColor>254,254,254</BkColor>
+    <PtColor>255,20,160</PtColor>
+    <LineType>0</LineType>
+    <Points MF="9">121,15916,463,16141,1381,16663,2551,16573,3631,17068,4558,17446,5593,17428,6673,18256,7771,18166,8896,18778</Points>
+    <Points MF="9">9796,18931,11038,19453,11983,19948,12991,20281,13936,20668,15133,20911,16141,21568,17203,22171,18346,22756</Points>
+  </Line>
+  <Line>
+    <Caption>Линия #4</Caption>
+    <LineColor>87,87,87</LineColor>
+    <BkColor>254,254,254</BkColor>
+    <PtColor>128,220,255</PtColor>
+    <LineType>0</LineType>
+    <Points MF="9">238,15493,1426,15403,2488,15943,4513,16456,5656,17203,6646,17473,7753,17653,8878,18166,9913,18283,11011,19093</Points>
+    <Points MF="9">11938,19021,12901,19471,13981,19768,15178,20533,16231,21136,17221,21298,18346,21478,18886,22171</Points>
+  </Line>
+  <Line>
+    <Caption>Линия #5</Caption>
+    <LineColor>87,87,87</LineColor>
+    <BkColor>254,254,254</BkColor>
+    <PtColor>128,245,128</PtColor>
+    <LineType>0</LineType>
+    <Points MF="9">76,14638,436,14953,1588,15178,2488,15376,3496,15556,4648,15961,5683,16393,6646,16978,7753,17266,8806,17221</Points>
+    <Points MF="9">9778,17356,10975,17923,11938,18175,12541,18463,14026,18814,15052,19192,16726,20047,17797,21091,18868,21784</Points>
+  </Line>
+  <Line>
+    <Caption>Линия #6</Caption>
+    <LineColor>87,87,87</LineColor>
+    <BkColor>254,254,254</BkColor>
+    <PtColor>255,128,64</PtColor>
+    <LineType>0</LineType>
+    <Points MF="9">139,14188,1192,14161,2515,14872,3568,15268,4567,15619,6664,16249,7672,16555,8725,16708,9778,17401,11191,18292</Points>
+    <Points MF="9">11938,18157,12802,17878,13954,18157,15052,18778,16114,19084,17158,19822,18292,20038</Points>
+  </Line>
+  <Line>
+    <Caption>Линия #7</Caption>
+    <LineColor>87,87,87</LineColor>
+    <BkColor>254,254,254</BkColor>
+    <PtColor>128,0,255</PtColor>
+    <LineType>0</LineType>
+    <Points MF="9">481,13351,1444,14125,2461,14395,3505,14602,4594,15079,6583,15655,7618,15934,8761,16357,9742,16708,10921,17194</Points>
+    <Points MF="9">11929,17437,12757,17842,13909,18184,15178,18391,16267,19048,18319,19966</Points>
+  </Line>
+  <Line>
+    <Caption>Линия #8</Caption>
+    <LineColor>87,87,87</LineColor>
+    <BkColor>254,254,254</BkColor>
+    <PtColor>200,255,50</PtColor>
+    <LineType>0</LineType>
+    <Points MF="9">130,11794,400,11695,1372,12100,2479,12982,3559,13342,4585,13504,5647,13990,6574,14107,7609,14512,8869,15052</Points>
+    <Points MF="9">9697,15187,10885,15304,11965,15979,12955,16240,13999,16474,15079,17077,16114,17410,17212,17725,18229,18580,19147,19732</Points>
+  </Line>
+  <Line>
+    <Caption>Линия #9</Caption>
+    <LineColor>87,87,87</LineColor>
+    <BkColor>254,254,254</BkColor>
+    <PtColor>220,70,220</PtColor>
+    <LineType>0</LineType>
+    <Points MF="9">175,9400,1444,9985,2497,10507,3532,10417,4702,10660,5629,11110,6745,11857,7690,12280,8689,12262,10012,12865</Points>
+    <Points MF="9">10822,13189,11902,13450,13000,13990,13900,14044,14899,14800,16015,15250,17185,16312,18337,16402,18742,16339</Points>
+  </Line>
+  <CurrentLine>8</CurrentLine>
+  <Xmin MF="9">463,26995,6.000000e+001</Xmin>
+  <Xmax MF="9">21505,27004,8.000000e+001</Xmax>
+  <Ymin MF="9">463,26995,0.000000e+000</Ymin>
+  <Ymax MF="9">427,319,2.500000e+001</Ymax>
+  <XScale>linear</XScale>
+  <YScale>linear</YScale>
+  <Position>1509,967</Position>
+  <Zoom>
+    <Scale>60.0</Scale>
+  </Zoom>
+  <Digitize>
+    <IgnorePixels>1</IgnorePixels>
+    <LineIDMethod>1</LineIDMethod>
+  </Digitize>
+  <AutoTrace>
+    <TraceDistance>28</TraceDistance>
+    <SmoothLines>1</SmoothLines>
+  </AutoTrace>
+  <DigitizeArea>
+    <LineOrArea>0</LineOrArea>
+    <RotateAngle>0.000000</RotateAngle>
+    <dx>8.000000</dx>
+  </DigitizeArea>
+  <GridSettings>
+    <ShowGrid>1</ShowGrid>
+    <AreaType>1</AreaType>
+    <deltaX>1.00000000000000e+000</deltaX>
+    <deltaY>1.00000000000000e+000</deltaY>
+    <deltaXUnits>1</deltaXUnits>
+    <deltaYUnits>1</deltaYUnits>
+    <GoThroughX>6.00000000000000e+001</GoThroughX>
+    <GoThroughY>0.00000000000000e+000</GoThroughY>
+    <dx>15.000000</dx>
+    <dy>15.000000</dy>
+  </GridSettings>
+</GetDataWorkspace>
